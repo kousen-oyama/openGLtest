@@ -11,6 +11,27 @@ void resize(int w, int h);
 
 int ButtonState=0;
 
+
+
+class Calls{
+public:
+	//staticなメンバ関数にするとメンバ関数のポインタが渡せる。
+	static void display(){
+		glClear(GL_COLOR_BUFFER_BIT);
+		glFlush();
+	}
+	void calls(){
+		glutDisplayFunc(display);
+		glutMouseFunc(mouse);
+		glutMotionFunc(DrugMotion);
+		glutKeyboardFunc(keyboard);
+	}
+};
+
+Calls call;
+
+
+
 void calls(){
 	glutDisplayFunc(display);
 	glutMouseFunc(mouse);
@@ -65,7 +86,8 @@ void resize(int w, int h){
 int main(int argc, char *argv[]){
 	glutInit(&argc, argv);
 	glutCreateWindow("mouse test");
-	calls();
+	call.calls();
+	//	calls();
 	inits();
 	glutMainLoop();
 	return 0;
