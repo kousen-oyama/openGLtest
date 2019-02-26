@@ -3,7 +3,7 @@
 #include<cstdlib>
 #include"GL/glut.h"
 
-void display();
+//void display();
 void mouse(int button, int state, int x, int y);
 void DrugMotion(int x, int y);
 void keyboard(unsigned char key, int x, int y);
@@ -14,6 +14,7 @@ int ButtonState=0;
 
 
 class Calls{
+private:
 public:
 	//staticなメンバ関数にするとメンバ関数のポインタが渡せる。
 	static void display(){
@@ -33,7 +34,7 @@ Calls call;
 
 
 void calls(){
-	glutDisplayFunc(display);
+	glutDisplayFunc(call.display);
 	glutMouseFunc(mouse);
 	glutMotionFunc(DrugMotion);
 	glutKeyboardFunc(keyboard);
@@ -47,10 +48,10 @@ void inits(){
 	gluOrtho2D(0, 800, 800,0);
 }
 
-void display(){
-	glClear(GL_COLOR_BUFFER_BIT);
-	glFlush();
-}
+//void display(){
+//	glClear(GL_COLOR_BUFFER_BIT);
+//	glFlush();
+//}
 
 void mouse(int button, int state, int x, int y){
 	if(button==GLUT_LEFT_BUTTON&&state==GLUT_DOWN){
@@ -86,7 +87,7 @@ void resize(int w, int h){
 int main(int argc, char *argv[]){
 	glutInit(&argc, argv);
 	glutCreateWindow("mouse test");
-	call.calls();
+		call.calls();
 	//	calls();
 	inits();
 	glutMainLoop();
